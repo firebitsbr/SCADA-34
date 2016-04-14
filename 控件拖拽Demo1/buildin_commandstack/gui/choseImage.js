@@ -1,4 +1,4 @@
-function showPreview() {
+function showPreview(source) {
 
 	// alert("1111");
 //	var file = document.getElementById("fileField").files[0];
@@ -7,9 +7,9 @@ function showPreview() {
 		alert("请确保文件为图像类型");
 		return false;
 	}
-	var val = file.name;
-	var texts = document.getElementById("type-file-text");
-	texts.value = val;
+	// var val = file.name;
+	// var texts = document.getElementById("type-file-text");
+	// texts.value = val;
 	if (window.FileReader) {
 		var fr = new FileReader();
 		fr.readAsDataURL(file);
@@ -20,7 +20,7 @@ function showPreview() {
 //			$("#sign2Span").text("false");//  false 表示进行了选择图片的操作
 //			console.log($("#sign1Span").text());
 			console.log("success~~~")
-//			document.getElementById("portrait").src = e.target.result;
+			document.getElementById("myBgimage").src = e.target.result;
 			// return e.target.result;
 
 			//			$(".image").src = e.target.result;

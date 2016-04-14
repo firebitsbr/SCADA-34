@@ -81,7 +81,32 @@ example.Toolbar = Class.extend({
 		this.saveButton = $("<button>保存设置</button>");
 		this.html.append(this.saveButton);
 		this.saveButton.button().click($.proxy(function() {
-			alert("11111111111111");
+
+
+			if (typeof(Storage) !== "undefined") {
+
+
+				var writer = new draw2d.io.json.Writer();
+				writer.marshal(this.view, function(json) {
+					// $("#json").text(JSON.stringify(json, null, 2));
+					// var color = new draw2d.util.Color(255, 102, 102);
+					console.log(JSON.stringify(json, null, 2));
+
+
+			
+				var strjsonData = JSON.stringify(json, null, 2);
+
+			localStorage.setItem("CanvasData", strjsonData); //存储图标
+
+			// console.log(arrayData);
+		});
+		}
+		 else
+		 {
+			alert("NO");
+		}
+
+			// displayJSON(this.view);
 			
 		}, this)).button("option", "disabled", false);
 
@@ -96,7 +121,7 @@ example.Toolbar = Class.extend({
 	 */
 	onSelectionChanged: function(emitter, figure) {
 		this.deleteButton.button("option", "disabled", figure === null);
-		this.saveButton.button("option", "disabled", figure === null);
+		// this.saveButton.button("option", "disabled", figure === null);
 	},
 
 	/**
