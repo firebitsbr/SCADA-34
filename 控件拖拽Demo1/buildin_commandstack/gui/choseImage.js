@@ -19,7 +19,7 @@ function showPreview(source) {
 //			$("#sign1Span").text("false");//设置图片完成可以进行存储
 //			$("#sign2Span").text("false");//  false 表示进行了选择图片的操作
 //			console.log($("#sign1Span").text());
-			console.log("success~~~")
+			// console.log(e.target.result);
 			document.getElementById("myBgimage").src = e.target.result;
 			// return e.target.result;
 

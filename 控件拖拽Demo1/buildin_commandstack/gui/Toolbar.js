@@ -45,8 +45,8 @@ example.Toolbar = Class.extend({
 		}, this)).button("option", "disabled", true);
 
 		// 清除画布
-		
-		this.delimiter1 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;</span>");//添加空格
+
+		this.delimiter1 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;</span>"); //添加空格
 		this.html.append(this.delimiter1);
 		this.clearButtons = $("<button>清除画布</button>");
 		this.html.append(this.clearButtons);
@@ -62,52 +62,45 @@ example.Toolbar = Class.extend({
 			}
 		}, this)).button("option", "disabled", false);
 
-
 		//上传图片
-		this.delimiter2 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>");//添加空格
+		this.delimiter2 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>"); //添加空格
 		this.html.append(this.delimiter2);
 
 		this.choseImageButtons = $("<button>上传图片</button>");
 		this.html.append(this.choseImageButtons);
-		this.choseImage = $("<input type=\"file\" id=\"fileField\" size=\"28\"  style = \"opacity: 0;display:none;\" onchange=\"showPreview(this)\" />");//files按钮---隐藏
+		this.choseImage = $("<input type=\"file\" id=\"fileField\" size=\"28\"  style = \"opacity: 0;display:none;\" onchange=\"showPreview(this)\" />"); //files按钮---隐藏
 		this.html.append(this.choseImage);
 		this.choseImageButtons.button().click($.proxy(function() {
 			$("#fileField").click();
-			
+
 		}, this)).button("option", "disabled", false);
 
-		// this.delimiter3 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>");//添加空格
-		this.html.append(this.delimiter);
+		this.delimiter3 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>");//添加空格
+		this.html.append(this.delimiter3);
 		this.saveButton = $("<button>保存设置</button>");
 		this.html.append(this.saveButton);
 		this.saveButton.button().click($.proxy(function() {
 
-
+			//判断浏览器是否支持本地存储
 			if (typeof(Storage) !== "undefined") {
-
 
 				var writer = new draw2d.io.json.Writer();
 				writer.marshal(this.view, function(json) {
-					// $("#json").text(JSON.stringify(json, null, 2));
-					// var color = new draw2d.util.Color(255, 102, 102);
-					console.log(JSON.stringify(json, null, 2));
 
+					// console.log(JSON.stringify(json, null, 2));
 
-			
-				var strjsonData = JSON.stringify(json, null, 2);
+					var strjsonData = JSON.stringify(json, null, 2);
 
-			localStorage.setItem("CanvasData", strjsonData); //存储图标
+					localStorage.setItem("CanvasData", strjsonData); //存储图标
 
-			// console.log(arrayData);
-		});
-		}
-		 else
-		 {
-			alert("NO");
-		}
+					// console.log(arrayData);
+				});
+			} else {
+				alert("NO");
+			}
 
 			// displayJSON(this.view);
-			
+
 		}, this)).button("option", "disabled", false);
 
 	},
