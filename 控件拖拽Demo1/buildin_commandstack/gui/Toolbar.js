@@ -10,12 +10,12 @@ example.Toolbar = Class.extend({
 		//
 		view.getCommandStack().addEventListener(this);
 
-		// Register a Selection listener for the state hnadling
-		// of the Delete Button
+		// 
+		// 为删除按钮的选中状态注册一个选中监听
 		//
 		view.on("select", $.proxy(this.onSelectionChanged, this));
 
-		// Inject the UNDO Button and the callbacks
+		// 添加撤销按钮及回调
 		//
 		this.undoButton = $("<button>上一步</button>");
 		this.html.append(this.undoButton);
@@ -23,7 +23,7 @@ example.Toolbar = Class.extend({
 			this.view.getCommandStack().undo();
 		}, this)).button("option", "disabled", true);
 
-		// Inject the REDO Button and the callback
+		// 添加重做按钮及回调
 		//
 		this.redoButton = $("<button>下一步</button>");
 		this.html.append(this.redoButton);
@@ -34,7 +34,7 @@ example.Toolbar = Class.extend({
 		this.delimiter = $("<span class='toolbar_delimiter'>&nbsp;</span>");
 		this.html.append(this.delimiter);
 
-		// Inject the DELETE Button
+		// 添加删除按钮
 		//
 		this.deleteButton = $("<button>删除</button>");
 		this.html.append(this.deleteButton);
@@ -64,18 +64,24 @@ example.Toolbar = Class.extend({
 
 
 		//上传图片
-		this.delimiter2 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>");
+		this.delimiter2 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>");//添加空格
 		this.html.append(this.delimiter2);
 
 		this.choseImageButtons = $("<button>上传图片</button>");
 		this.html.append(this.choseImageButtons);
-		this.choseImage = $("<input type=\"file\" id=\"fileField\" size=\"28\"  style = \"opacity: 0;display:none;\" onchange=\"showPreview(this)\" />");
+		this.choseImage = $("<input type=\"file\" id=\"fileField\" size=\"28\"  style = \"opacity: 0;display:none;\" onchange=\"showPreview(this)\" />");//files按钮---隐藏
 		this.html.append(this.choseImage);
-
 		this.choseImageButtons.button().click($.proxy(function() {
-//			alert("上传图片");
-			// showPreview(this.choseImageButtons);
 			$("#fileField").click();
+			
+		}, this)).button("option", "disabled", false);
+
+		// this.delimiter3 = $("<span class='toolbar_delimiter'>&nbsp;&nbsp;&nbsp;</span>");//添加空格
+		this.html.append(this.delimiter);
+		this.saveButton = $("<button>保存设置</button>");
+		this.html.append(this.saveButton);
+		this.saveButton.button().click($.proxy(function() {
+			alert("11111111111111");
 			
 		}, this)).button("option", "disabled", false);
 
@@ -90,6 +96,7 @@ example.Toolbar = Class.extend({
 	 */
 	onSelectionChanged: function(emitter, figure) {
 		this.deleteButton.button("option", "disabled", figure === null);
+		this.saveButton.button("option", "disabled", figure === null);
 	},
 
 	/**
