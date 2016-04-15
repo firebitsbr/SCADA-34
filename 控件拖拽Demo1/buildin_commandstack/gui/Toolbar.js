@@ -92,7 +92,7 @@ example.Toolbar = Class.extend({
 					var strjsonData = JSON.stringify(json, null, 2);
 
 					localStorage.setItem("CanvasData", strjsonData); //存储图标
-
+					localStorage.clear();
 					// console.log(arrayData);
 				});
 			} else {
