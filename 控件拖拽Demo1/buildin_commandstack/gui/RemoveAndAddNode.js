@@ -1,0 +1,3 @@
+function RemoveAndaddNode (obj1,obj2) {
+	// body...
+}
